@@ -234,11 +234,19 @@ $SEO_PATH  = "/sponsor";
     })();
   </script>
   <script>
-    document.querySelectorAll('[data-copy]').forEach(btn => {
-      btn.addEventListener('click', () => {
-        navigator.clipboard.writeText(btn.dataset.copy);
-        btn.textContent = '<?php echo t('sponsor.contact.copied'); ?>';
-        setTimeout(() => btn.textContent = '<?php echo t('sponsor.contact.copy'); ?>', 1200);
+    document.getElementById('goPackages')?.addEventListener('click', function (e) {
+      e.preventDefault();
+
+      const target = document.getElementById('paketler');
+      if (!target) return;
+
+      const headerOffset = 90; // 🔴 BURAYI AYARLA (70–110 arası ideal)
+      const elementPosition = target.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
       });
     });
   </script>
