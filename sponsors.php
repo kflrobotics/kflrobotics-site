@@ -234,21 +234,22 @@ $SEO_PATH  = "/sponsor";
     })();
   </script>
   <script>
-    document.getElementById('goPackages')?.addEventListener('click', function (e) {
+  document.addEventListener('DOMContentLoaded', () => {
+    const btn = document.getElementById('goPackages');
+    const target = document.getElementById('paketler');
+    if (!btn || !target) return;
+
+    btn.addEventListener('click', (e) => {
       e.preventDefault();
 
-      const target = document.getElementById('paketler');
-      if (!target) return;
+      const nav = document.querySelector('header, .navbar, nav');
+      const navH = nav ? nav.offsetHeight : 90;
+      const extra = 16;
 
-      const headerOffset = 90; // 🔴 BURAYI AYARLA (70–110 arası ideal)
-      const elementPosition = target.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      });
+      const top = target.getBoundingClientRect().top + window.pageYOffset - navH - extra;
+      window.scrollTo({ top, behavior: 'smooth' });
     });
+  });
   </script>
   <script>
     document.querySelectorAll('a[href="#paketler"]').forEach(a => {
