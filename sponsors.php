@@ -99,7 +99,7 @@ $SEO_PATH  = "/sponsor";
             <?php echo t('sponsor.why.lead'); ?>
           </p>
           <div class="btn-row" style="margin-top:16px;">
-            <a class="btn primary" href="/assets/sponsors/2025_2026_Tanıtım_ve_Sponsorluk_Dosyası.pdf" target="_blank" id="goPackages"><?php echo t('sponsor.why.cta_pdf'); ?></a>
+            <a class="btn primary" href="/assets/sponsors/2025_2026_Tanıtım_ve_Sponsorluk_Dosyası.pdf" target="_blank"><?php echo t('sponsor.why.cta_pdf'); ?></a>
           </div>
         </div>
       </div>
@@ -251,14 +251,32 @@ $SEO_PATH  = "/sponsor";
     });
   </script>
   <script>
-    document.getElementById('goPackages')?.addEventListener('click', function (e) {
-      e.preventDefault();
-      document.querySelector('#paketler').scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
+    document.querySelectorAll('a[href="#paketler"]').forEach(a => {
+      a.addEventListener('click', function (e) {
+        e.preventDefault();
+
+        const target = document.getElementById('paketler');
+        if (!target) return;
+
+        // Navbar yüksekliği otomatik ölçülür
+        const nav = document.querySelector('header, .navbar, nav');
+        const navHeight = nav ? nav.offsetHeight : 90;
+
+        const offset = 16; // ince ayar
+        const top =
+          target.getBoundingClientRect().top +
+          window.pageYOffset -
+          navHeight -
+          offset;
+
+        window.scrollTo({
+          top: top,
+          behavior: 'smooth'
+        });
       });
     });
   </script>
+
 
   <script src="assets/js/kflrobotics.js"></script>
   <?php require_once __DIR__ . '/partials/footer.php'; ?>
