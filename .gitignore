@@ -1,19 +1,11 @@
-# Secrets
 .env
-
-# Composer (opsiyon - aşağıda anlatıyorum)
 vendor/
-
-# Logs / cache
 *.log
 /cache/
 /tmp/
-
-# OS / IDE
 .DS_Store
 Thumbs.db
 .idea/
 .vscode/
 vision.zip
-# Eğer yükleme klasörün varsa (örnek)
 uploads/
