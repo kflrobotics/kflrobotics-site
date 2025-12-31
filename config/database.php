@@ -39,7 +39,6 @@ final class Database
                 PDO::ATTR_STRINGIFY_FETCHES  => false,
             ]);
         } catch (PDOException $e) {
-            // GEÇİCİ: gerçek hatayı ekrana yazdır
             error_log('[DB] ' . $e->getMessage());
             http_response_code(500);
             exit('Database connection error.');
@@ -49,9 +48,6 @@ final class Database
         return self::$pdo;
     }
 
-    /**
-     * Helper: safe query prepare
-     */
     public static function prepare(string $sql): PDOStatement
     {
         return self::connection()->prepare($sql);

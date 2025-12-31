@@ -1,5 +1,4 @@
 <?php
-// config/env.php
 declare(strict_types=1);
 
 function env(string $key, $default = null) {
@@ -20,12 +19,10 @@ function load_env_file(string $path): void {
     $k = trim($k);
     $v = trim($v);
 
-    // tırnakları temizle
     if ((str_starts_with($v, '"') && str_ends_with($v, '"')) || (str_starts_with($v, "'") && str_ends_with($v, "'"))) {
       $v = substr($v, 1, -1);
     }
 
-    // zaten set edilmişse ezme
     if (getenv($k) === false) {
       putenv("$k=$v");
       $_ENV[$k] = $v;

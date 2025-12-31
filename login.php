@@ -12,7 +12,6 @@ $message = ['type' => '', 'text' => ''];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    // CAPTCHA KONTROLÜ (Turnstile - ENV)
     $captchaToken = $_POST['cf-turnstile-response'] ?? null;
     [$captchaOk, $captchaMsg] = turnstile_verify($captchaToken, $_SERVER['REMOTE_ADDR'] ?? null);
 

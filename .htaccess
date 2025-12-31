@@ -1,14 +1,11 @@
-# --- SECURITY: Block vendor access ---
 <IfModule mod_authz_core.c>
   <DirectoryMatch "^.*/vendor/">
     Require all denied
   </DirectoryMatch>
 </IfModule>
-# --- Block direct access to .env and other sensitive files ---
 <FilesMatch "^(\.env|\.env\.example|composer\.(json|lock)|phpunit\.xml|error_log)$">
   Require all denied
 </FilesMatch>
-# Eğer DirectoryMatch çalışmıyorsa (bazı hostinglerde), aşağıdaki Rewrite yöntemi garanti olur:
 <IfModule mod_rewrite.c>
   RewriteEngine On
   RewriteRule ^vendor/ - [F,L]
@@ -19,25 +16,19 @@ RewriteBase /
 
 DirectoryIndex index.php
 
-# GERÇEK dosya veya klasör varsa DOKUNMA
 RewriteCond %{REQUEST_FILENAME} -f [OR]
 RewriteCond %{REQUEST_FILENAME} -d
 RewriteRule ^ - [L]
 
-# .php uzantısını gizle (sadece varsa)
 RewriteCond %{REQUEST_FILENAME}.php -f
 RewriteRule ^(.+)$ $1.php [L]
 
-# index.php veya index -> /
 RewriteCond %{THE_REQUEST} \s/+index(\.php)?[\s?]
 RewriteRule ^index(\.php)?$ / [R=301,L]
 
-# .php ile direkt erişimi temiz URL'ye yönlendir
 RewriteCond %{THE_REQUEST} \s/+(.+?)\.php[\s?]
 RewriteRule ^ %1 [R=301,L]
 
-# BURASI KRİTİK 👇
-# Yukarıdakilerin HİÇBİRİNE uymayan her şey = 404
 RewriteRule ^.*$ /404.php [L]
 
 ErrorDocument 404 /404.php

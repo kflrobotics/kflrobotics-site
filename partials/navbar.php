@@ -21,7 +21,6 @@ if (isset($_SESSION['user_id'])) {
   }
 }
 
-// ✅ aktif dil
 $currentLang = $_SESSION['lang'] ?? ($_COOKIE['site_lang'] ?? 'tr');
 if (!in_array($currentLang, ['tr', 'en', 'de'], true)) $currentLang = 'tr';
 

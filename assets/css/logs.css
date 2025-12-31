@@ -1,8 +1,3 @@
-/* =========================
-   LOGS / DAILY CALENDAR
-   ========================= */
-
-/* Wrapper */
 .logs-wrap{
   display:grid;
   grid-template-columns:1.1fr 1fr;
@@ -15,13 +10,10 @@
     grid-template-columns:1fr;
   }
 }
-
-/* Calendar card */
 .calendar{
   padding:16px;
 }
 
-/* Header */
 .calendar-head{
   display:flex;
   align-items:center;
@@ -41,7 +33,6 @@
   color:var(--text);
 }
 
-/* Weekdays + days grid */
 .calendar-weekdays,
 .calendar-days{
   display:grid;
@@ -55,7 +46,6 @@
   font-size:12px;
 }
 
-/* Day cell */
 .calendar-days > a.day{
   display:flex;
   align-items:center;
@@ -80,7 +70,6 @@
   transform:translateY(-2px);
 }
 
-/* States */
 .calendar-days > a.day.today{
   border-color:rgba(45,212,191,0.6);
 }
@@ -100,21 +89,18 @@
   background:var(--accent);
 }
 
-/* Empty cells */
 .calendar-days .day.empty{
   background:transparent;
   border:none;
   pointer-events:none;
 }
 
-/* Right panel */
 .day-panel{
   padding:18px;
   display:grid;
   gap:14px;
 }
 
-/* Log form */
 .log-form textarea{
   width:100%;
   resize:vertical;
@@ -125,7 +111,6 @@
   color:var(--text);
 }
 
-/* Log list */
 .log-list{
   display:grid;
   gap:10px;

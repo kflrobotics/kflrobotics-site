@@ -32,29 +32,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $email = mb_strtolower(trim((string)($_POST['email'] ?? '')));
   $ts    = $_POST['cf-turnstile-response'] ?? null;
 
-  // 1) Turnstile captcha (ENV)
   [$captchaOk, $captchaMsg] = turnstile_verify($ts, $_SERVER['REMOTE_ADDR'] ?? null);
   if (!$captchaOk) {
     $message = t('fp.errors.turnstile', 'Lütfen doğrulamayı tamamlayın.');
     $isError = true;
 
-  // 2) CSRF
   } elseif (!verify_csrf($token)) {
     $message = t('fp.unavailable.request', 'Geçersiz istek.');
     $isError = true;
 
-  // 3) Email format
   } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     $message = t('fp.unavailable.mail', 'Lütfen geçerli bir e-posta girin.');
     $isError = true;
 
   } else {
-    // Kullanıcı var mı?
     $st = $pdo->prepare('SELECT id, name, email FROM users WHERE email = :e LIMIT 1');
     $st->execute(['e' => $email]);
     $user = $st->fetch(PDO::FETCH_ASSOC);
 
-    // Güvenlik: kullanıcı yoksa da aynı mesaj
     $message = t(
       'fp.sent.link',
       'Eğer bu e-posta sistemimizde varsa, şifre sıfırlama bağlantısı gönderildi.'
@@ -65,7 +60,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       $rawToken  = bin2hex(random_bytes(32));
       $tokenHash = hash('sha256', $rawToken);
 
-      // Eski tokenları kapat
       $pdo->prepare(
         'UPDATE password_resets
          SET used_at = NOW()

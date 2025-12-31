@@ -23,9 +23,6 @@ body{
 }
 a{ color:inherit; text-decoration:none; }
 
-/* =========================
-   PAGE BACKGROUNDS
-   ========================= */
 body.page-index{
   background:
     radial-gradient(circle at 20% 20%, rgba(45,212,191,0.08), transparent 35%),
@@ -41,16 +38,12 @@ body.page-sponsor{
   background:linear-gradient(135deg, #08111d, #0a1624);
 }
 
-/* =========================
-   LAYOUT / CONTAINER
-   ========================= */
 .page{
   max-width:1200px;
   margin:0 auto;
   padding:32px 22px 64px;
 }
 
-/* sayfa flex ve footer konumu */
 body.page-vision,
 body.page-team,
 body.page-panel,
@@ -62,13 +55,11 @@ body.page-sponsor{
   min-height:100vh;
 }
 
-/* sayfa bazlı max-width */
 body.page-vision .page,
 body.page-team .page{ max-width:900px; }
 body.page-panel .page{ max-width:1100px; }
 body.page-admin .page{ max-width:1000px; }
 
-/* footer’ı aşağı iter */
 body.page-vision .page,
 body.page-team .page,
 body.page-panel .page,
@@ -79,9 +70,6 @@ body.page-sponsor .page{
   padding-bottom:24px;
 }
 
-/* =========================
-   NAVBAR (FINAL: hide/show + top:0)
-   ========================= */
 .nav-shell{
   width:100%;
   display:flex;
@@ -136,9 +124,6 @@ body.page-sponsor .page{
   box-shadow:0 10px 30px rgba(45,212,191,0.15);
 }
 
-/* =========================
-   GLASS CARD
-   ========================= */
 .glass{
   background:linear-gradient(145deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
   border:1px solid var(--border);
@@ -147,9 +132,6 @@ body.page-sponsor .page{
   padding:28px;
 }
 
-/* =========================
-   TYPO / BUTTONS
-   ========================= */
 h1{ margin:12px 0 14px; font-size:44px; letter-spacing:-0.6px; line-height:1.25; }
 h2{ margin:0 0 10px; }
 .lead{ color:var(--muted); line-height:1.6; margin:8px 0 16px; }
@@ -199,9 +181,6 @@ h2{ margin:0 0 10px; }
 }
 .cta-btn:hover{ transform:translateY(-1px); box-shadow:0 14px 40px rgba(45,212,191,0.3); }
 
-/* =========================
-   FOOTER (FINAL + FIXES)
-   ========================= */
 footer{
   margin-top:36px;
   color:var(--muted);
@@ -209,14 +188,13 @@ footer{
   font-size:13px;
 }
 
-/* site footer */
 .site-footer{
   margin-top:12px;
   background:rgba(5,10,20,0.85);
   border:1px solid rgba(255,255,255,0.05);
   border-radius:24px;
   padding:32px;
-  padding-top:18px;          /* fix */
+  padding-top:18px;
   backdrop-filter:blur(14px);
   box-shadow:0 20px 40px rgba(0,0,0,0.45);
   position:relative;
@@ -259,7 +237,6 @@ footer{
   font-size:13px;
 }
 
-/* Footer logo center + scale (final) */
 .site-footer .footer-col:first-child{
   display:flex;
   flex-direction:column;
@@ -289,9 +266,6 @@ footer{
   .site-footer{ padding:24px; margin-top:8px; }
 }
 
-/* =========================
-   INDEX HERO
-   ========================= */
 .hero{
   display:flex;
   flex-direction:column;
@@ -331,7 +305,6 @@ footer{
 .hero-form h3{ margin-bottom:10px; font-size:22px; }
 .hero-form .mini{ margin-bottom:18px; }
 
-/* features */
 .features{ margin-top:60px; padding-bottom:60px; }
 .features h2{ margin-bottom:24px; font-size:26px; }
 .features-grid{
@@ -359,16 +332,12 @@ footer{
 .feature-body h3{ margin-bottom:6px; }
 .feature-body p{ color:var(--muted); line-height:1.5; }
 
-/* Feature görsel (FINAL: cover) */
 .feature-visual.feature-visual-img{
   background-size:cover;
   background-position:center;
   background-repeat:no-repeat;
 }
 
-/* =========================
-   LOGIN (FINAL: 704px)
-   ========================= */
 body.page-login .page{
   flex:1;
   display:flex;
@@ -379,7 +348,6 @@ body.page-login .page{
   padding:40px 16px;
 }
 
-/* final login-wide kutu */
 body.page-login .glass.login-wide{
   width:100%;
   max-width:704px;
@@ -460,14 +428,10 @@ body.page-login .glass.login-wide{
   margin-top:10px;
 }
 
-/* login input/button height (final override) */
 body.page-login .login-wide input{ height:40px; font-size:14px; }
 body.page-login .login-wide .submit{ height:50px; font-size:14px; }
 body.page-login .login-wide h1{ font-size:37px; }
 
-/* =========================
-   PANEL / ADMIN
-   ========================= */
 .header{
   display:flex;
   align-items:center;
@@ -501,7 +465,6 @@ body.page-login .login-wide h1{ font-size:37px; }
 .card h3{ margin:0 0 8px; }
 .meta-small{ color:var(--muted); font-size:13px; }
 
-/* form yan yana */
 .form-row{
   display:grid;
   grid-template-columns:repeat(auto-fit, minmax(340px, 1fr));
@@ -520,7 +483,6 @@ body.page-login .login-wide h1{ font-size:37px; }
   .panel-two-cols{ grid-template-columns:1fr; }
 }
 
-/* Admin accordion */
 .admin-accordion{ margin-bottom:16px; }
 .admin-acc-header{
   width:100%;
@@ -579,9 +541,6 @@ body.page-login .login-wide h1{ font-size:37px; }
   transform:translateY(0);
 }
 
-/* =========================
-   TEAM
-   ========================= */
 .team-hero{
   margin-bottom:32px;
   background:rgba(45,212,191,0.08);
@@ -629,7 +588,6 @@ body.page-login .login-wide h1{ font-size:37px; }
   .team-grid{ grid-template-columns:repeat(3,1fr); }
 }
 
-/* About team */
 .about-team-section{ margin-top:48px; margin-bottom:48px; }
 .about-team{
   display:grid;
@@ -644,7 +602,6 @@ body.page-login .login-wide h1{ font-size:37px; }
   .about-cta{ justify-content:center; }
 }
 
-/* Vision */
 .vision-section{ margin:52px 0 40px; }
 .vision-box{
   display:grid;
@@ -660,9 +617,6 @@ body.page-login .login-wide h1{ font-size:37px; }
   .vision-cta{ justify-content:flex-start; }
 }
 
-/* =========================
-   LOADER (FINAL)
-   ========================= */
 .loader-overlay{
   position:fixed;
   inset:0;
@@ -685,14 +639,13 @@ body.page-login .login-wide h1{ font-size:37px; }
 html.loading body{ overflow:hidden; }
 
 .loader-logo{
-  width:120px;          /* 70–110 arası oynayabilirsin */
+  width:120px;
   height:auto;
   margin-top:18px;
   animation: loaderPulse 1.6s ease-in-out infinite;
   user-select:none;
   pointer-events:none;
 }
-/* logo katmanları */
 .loader-logo-wrap{
   position:relative;
   width:120px;
@@ -701,7 +654,6 @@ html.loading body{ overflow:hidden; }
   place-items:center;
 }
 
-/* iki logo da aynı ölçüde üst üste */
 .loader-logo{
   width:120px;
   height:auto;
@@ -710,34 +662,26 @@ html.loading body{ overflow:hidden; }
   pointer-events:none;
 }
 
-/* alttaki: soluk (boş bardak) */
 .loader-logo--base{
   filter: grayscale(1) brightness(0.85);
   opacity:0.35;
 }
 
-/* üstteki: canlı (dolum) */
 .loader-logo--fill{
   position:absolute;
   inset:0;
   filter:none;
   opacity:1;
-
-  /* “bardak dolma” efekti: alttan yukarı doğru açılan pencere */
   clip-path: inset(100% 0 0 0);
   animation: logoFill 1.3s ease-in-out infinite;
 }
 
-/* dolma animasyonu */
 @keyframes logoFill{
   0%   { clip-path: inset(100% 0 0 0); }
   60%  { clip-path: inset(0%   0 0 0); }
   100% { clip-path: inset(0%   0 0 0); }
 }
 
-/* =========================
-   REVEAL (FINAL)
-   ========================= */
 body.is-loading .reveal{ opacity:0; }
 
 .reveal{
@@ -758,9 +702,6 @@ body.is-loading .reveal{ opacity:0; }
 .reveal-right.visible,
 .reveal-up.visible{ transform:translate(0); }
 
-/* =========================
-   SPONSORS
-   ========================= */
 .sponsors-section{ margin:80px 0; }
 .sponsors-wrap{ padding:24px; }
 .sponsors-head{ margin-bottom:16px; }
@@ -822,7 +763,6 @@ body.is-loading .reveal{ opacity:0; }
   .sponsor-card img{ max-height:70px; }
 }
 
-/* sponsor page: ölçülere geri dön (final blok) */
 body.page-sponsor .page{
   max-width:1200px;
   margin:0 auto;
@@ -850,7 +790,6 @@ body.page-sponsor .hero-left{ max-width:520px; }
 body.page-sponsor .hero-right{ justify-content:center; }
 body.page-sponsor .hero-form{ width:100%; }
 
-/* sponsor: mobil düzeltme */
 @media (max-width:640px){
   body.page-sponsor .hero-main{ padding:18px; }
   body.page-sponsor .hero-left h1{ font-size:34px; line-height:1.05; }
@@ -874,7 +813,6 @@ body.page-sponsor .hero-form{ width:100%; }
   body.page-sponsor .cards{ grid-template-columns:1fr; }
 }
 
-/* copy buttons */
 button[data-copy]{ cursor:pointer; }
 button[data-copy]:hover{
   filter:brightness(1.08);
@@ -883,9 +821,6 @@ button[data-copy]:hover{
 body.page-sponsor .contact-item button.btn,
 body.page-sponsor button.btn{ cursor:pointer; }
 
-/* =========================
-   CAPTCHA
-   ========================= */
 .captcha-wrap{
   display:flex;
   justify-content:center;
@@ -893,9 +828,6 @@ body.page-sponsor button.btn{ cursor:pointer; }
 }
 .captcha-wrap iframe{ margin:0 auto !important; }
 
-/* =========================
-   SUGGESTS GRID MOBILE FIX
-   ========================= */
 .suggests-grid{
   display:grid;
   grid-template-columns:repeat(auto-fit, minmax(320px, 1fr));
@@ -906,9 +838,6 @@ body.page-sponsor button.btn{ cursor:pointer; }
 }
 .page-panel textarea{ max-width:100%; }
 
-/* =========================
-   KFL SPOTLIGHT (FINAL)
-   ========================= */
 .kfl-spotlight{
   margin:8px 0 0;
   padding-bottom:8px;
@@ -951,9 +880,6 @@ body.page-sponsor button.btn{ cursor:pointer; }
   }
 }
 
-/* =========================
-   KFL BIG MARK (FINAL)
-   ========================= */
 .kfl-mark{
   position:relative;
   height:340px;
@@ -1013,9 +939,6 @@ body.page-sponsor button.btn{ cursor:pointer; }
   .kfl-mark{ display:none; }
 }
 
-/* =========================
-   MOBILE OPTIMIZATION (FINAL)
-   ========================= */
 @media (max-width:768px){
   .page{ padding:24px 16px 48px; }
 
@@ -1061,23 +984,18 @@ body.page-sponsor button.btn{ cursor:pointer; }
   .footer-grid{ gap:20px; }
 }
 
-/* 620px altı navbar davranışı */
 @media (max-width:620px){
   .nav-shell{ top:0; padding:0 12px; margin-top:0; }
   .nav-links{ flex-wrap:wrap; justify-content:flex-end; }
   h1{ font-size:34px; }
 }
 
-/* INDEX: Mobilde üstte başlık, altta kayıt */
 @media (max-width:960px){
   .hero-card{ flex-direction:column !important; }
   .hero-left{ order:1 !important; max-width:100%; }
   .hero-right{ order:2 !important; width:100%; }
 }
 
-/* =========================
-   HAMBURGER MENU (MOBILE)
-   ========================= */
 .hamburger{
   display:none;
   width:42px;
@@ -1139,7 +1057,6 @@ body.page-sponsor button.btn{ cursor:pointer; }
     pointer-events:auto;
   }
 
-  /* Menü açıkken navbar gizlenmesin */
   .nav-shell.menu-open.nav-hidden{
     transform:none;
     opacity:1;
@@ -1157,12 +1074,12 @@ body.page-sponsor button.btn{ cursor:pointer; }
 }
 
 .brand-logo{
-  height:36px;        /* ihtiyaca göre 32–40 arası oynayabilirsin */
+  height:36px;
   width:auto;
 }
 
 .brand-text{
   font-weight:700;
   font-size:18px;
-  color:#fff;         /* navbar rengine göre değiştir */
+  color:#fff;
 }

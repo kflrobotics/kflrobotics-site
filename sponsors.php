@@ -182,7 +182,6 @@ $SEO_PATH  = "/sponsor";
   </main>
 
   <script>
-    // Reveal animasyonu (index ile aynı mantık)
     window.initReveal = function () {
       const reveals = document.querySelectorAll('.reveal');
       const observer = new IntersectionObserver((entries, obs) => {
@@ -199,7 +198,6 @@ $SEO_PATH  = "/sponsor";
   <script src="assets/js/sponsors.js"></script>
   <script src="/assets/js/kflrobotics.js?v=3"></script>
   <script>
-    // Sponsor slider: mouse/touch ile sürükle-kaydır
     (function(){
       const slider = document.getElementById('sponsorsSlider');
       if(!slider) return;

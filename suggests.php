@@ -27,7 +27,6 @@ function verify_csrf(string $token): bool {
 
 if ($isLoggedIn && $_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'suggest') {
 
-    // CAPTCHA KONTROLÜ (Turnstile - ENV)
     $captchaToken = $_POST['cf-turnstile-response'] ?? null;
     [$captchaOk, $captchaMsg] = turnstile_verify($captchaToken, $_SERVER['REMOTE_ADDR'] ?? null);
 
@@ -46,7 +45,6 @@ if ($isLoggedIn && $_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ??
             $message = t('suggests.form.errors.max');
         } else {
 
-            // 🔒 ONAYLANMAMIŞ ÖNERİ SAYISI KONTROLÜ (MAX 5)
             $stmt = $pdo->prepare(
                 'SELECT COUNT(*) FROM suggestions
                  WHERE user_id = :uid
@@ -60,7 +58,6 @@ if ($isLoggedIn && $_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ??
                 $message = t('suggests.form.errors.too_many_pending');
             } else {
 
-                // ✅ ÖNERİYİ KAYDET
                 $stmt = $pdo->prepare(
                     'INSERT INTO suggestions (user_id, content, status, created_at)
                      VALUES (:uid, :content, "pending", NOW())'
@@ -72,7 +69,6 @@ if ($isLoggedIn && $_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ??
 
                 $message = t('suggests.form.success.pending');
 
-                // 📧 Adminlere "yeni öneri" maili gönder
                 $admins = $pdo->prepare('SELECT name, email FROM users WHERE role = "admin"');
                 $admins->execute();
                 $adminRows = $admins->fetchAll(PDO::FETCH_ASSOC);
@@ -100,7 +96,6 @@ if ($isLoggedIn && $_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ??
     }
 }
 
-// Onaylı önerileri çek
 $approved = $pdo->query("
     SELECT s.id, s.content, s.created_at, s.admin_reply, s.replied_at,
            COALESCE(u.name, u.email) AS author_name

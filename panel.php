@@ -3,11 +3,9 @@ require_once __DIR__ . '/config/bootstrap.php';
 require_once __DIR__ . '/config/database.php';
 require_once __DIR__ . '/config/auth.php';
 
-// Oturum + veritabanı kullanıcısı kontrolü
 $user = requireLogin();
 $pdo  = Database::connection();
 
-// Kullanıcıyı çek
 $stmt = $pdo->prepare('SELECT id, name, email, role, phone, birthdate FROM users WHERE id = :id LIMIT 1');
 $stmt->execute(['id' => $user['id']]);
 $dbUser = $stmt->fetch();
@@ -50,7 +48,6 @@ function formatBirthdate(?string $date): string
 $profileMessage  = '';
 $passwordMessage = '';
 
-// Öneri listeleri
 $pendingSuggestions = $pdo->prepare('SELECT content, created_at FROM suggestions WHERE user_id = :id AND status = "pending" AND (deleted_at IS NULL) ORDER BY created_at DESC');
 $pendingSuggestions->execute(['id' => $dbUser['id']]);
 $pendingSuggestions = $pendingSuggestions->fetchAll();
@@ -68,7 +65,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $passwordMessage = t('panel.errors.csrf');
     } else {
 
-        // Profil güncelle
         if ($action === 'profile_update') {
             $newEmail    = mb_strtolower(trim((string)($_POST['email'] ?? '')));
             $newPhoneRaw = preg_replace('/\D+/', '', (string)($_POST['phone'] ?? ''));
@@ -111,7 +107,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
 
             if ($profileMessage === '') {
-                // E-posta benzersizlik kontrolü
                 $chk = $pdo->prepare('SELECT id FROM users WHERE email = :email AND id <> :id LIMIT 1');
                 $chk->execute(['email' => $newEmail, 'id' => $dbUser['id']]);
 
@@ -133,7 +128,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                     $profileMessage = t('panel.profile.success');
 
-                    // Ekranda güncel göster
                     $email    = $newEmail;
                     $phone    = $newPhoneRaw;
                     $birthRaw = $newBirth;
@@ -141,7 +135,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
         }
 
-        // Şifre değiştir
         if ($action === 'password_change') {
             $current = (string)($_POST['current_password'] ?? '');
             $new     = (string)($_POST['new_password'] ?? '');

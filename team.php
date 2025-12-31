@@ -5,7 +5,6 @@ $SEO_TITLE = t('team.seo.title', 'KFL Robotics | Ekibimiz');
 $SEO_DESC  = t('team.seo.desc', 'KFL Robotics takım üyeleri, görev dağılımı ve VEX Robotics hedeflerimiz.');
 $SEO_PATH  = '/team';
 
-/** Baş harf üret */
 function initials(string $name): string {
 	$parts = preg_split('/\s+/', trim($name));
 	$ini = '';
@@ -17,7 +16,6 @@ function initials(string $name): string {
 	return $ini ?: 'KFL';
 }
 
-/** Basit ikon svg */
 function icon_svg(string $key): string {
 	switch ($key) {
 		case 'instagram':
@@ -35,7 +33,6 @@ function icon_svg(string $key): string {
 	}
 }
 
-// Sayfa dili (html lang)
 $htmlLang = $_SESSION['lang'] ?? ($_COOKIE['site_lang'] ?? 'tr');
 
 // Üyeler

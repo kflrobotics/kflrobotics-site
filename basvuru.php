@@ -6,11 +6,6 @@ $SEO_DESC  = t('apply.seo.desc');
 $SEO_PATH  = "/basvuru";
 
 session_start();
-
-/**
- * FORMLARIN LİNKLERİ (BUNLARI DEĞİŞTİR)
- * Google Forms linklerini buraya yapıştır.
- */
 const FORM_PR       = "https://basvuru.kflrobotics.com/pr";
 const FORM_YAZILIM  = "https://basvuru.kflrobotics.com/coding";
 const FORM_ELEKTRIK = "https://basvuru.kflrobotics.com/electrical";
@@ -44,7 +39,6 @@ $cards = [
 ];
 
 function icon_svg(string $key): string {
-  // Hafif, tek renk (CSS ile renklenecek) inline SVG ikonlar
   switch ($key) {
     case 'pr':   // megafon
       return '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11v2a2 2 0 0 0 2 2h1l4 4v-6h6a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M21 8a4 4 0 0 1 0 8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
@@ -70,7 +64,6 @@ function icon_svg(string $key): string {
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=General+Sans:wght@400;600&display=swap" rel="stylesheet">
 
-  <!-- index.php ile aynı yollar -->
   <link rel="stylesheet" href="/assets/css/style.css?v=<?= filemtime($_SERVER['DOCUMENT_ROOT'].'/assets/css/style.css') ?>">
   <link rel="stylesheet" href="/assets/css/lang.css?v=<?= filemtime($_SERVER['DOCUMENT_ROOT'].'/assets/css/lang.css') ?>">
   <link rel="stylesheet" href="/assets/css/basvuru.css?v=<?= filemtime($_SERVER['DOCUMENT_ROOT'].'/assets/css/basvuru.css') ?>">
@@ -105,7 +98,6 @@ function icon_svg(string $key): string {
   </main>
 
   <script>
-    // index.php’deki reveal mantığıyla aynı (sayfada yumuşak giriş animasyonu)
     window.initReveal = function () {
       const reveals = document.querySelectorAll('.reveal');
       const observer = new IntersectionObserver((entries, obs) => {

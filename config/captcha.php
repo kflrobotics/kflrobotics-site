@@ -3,9 +3,6 @@ declare(strict_types=1);
 
 require_once __DIR__ . '/env.php';
 
-/**
- * Cloudflare Turnstile helpers
- */
 function turnstile_site_key(): string {
   return (string) env('TURNSTILE_SITE_KEY', '');
 }
@@ -14,10 +11,6 @@ function turnstile_secret_key(): string {
   return (string) env('TURNSTILE_SECRET_KEY', '');
 }
 
-/**
- * Verify Turnstile token server-side.
- * Returns: [bool $ok, string $message]
- */
 function turnstile_verify(?string $token, ?string $remoteIp = null): array
 {
   $secret = turnstile_secret_key();
@@ -60,7 +53,6 @@ function turnstile_verify(?string $token, ?string $remoteIp = null): array
     return [true, 'OK'];
   }
 
-  // İstersen hata kodlarını logla:
   if (!empty($data['error-codes'])) {
     error_log('[Turnstile] Verify failed: ' . json_encode($data['error-codes']));
   }

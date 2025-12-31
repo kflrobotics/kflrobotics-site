@@ -23,7 +23,6 @@ function verify_csrf(string $token): bool
     return !empty($_SESSION['csrf_token']) && hash_equals($_SESSION['csrf_token'], $token);
 }
 
-// Login kontrolü (formu gizlemek için)
 $isLoggedIn = false;
 $pdo = Database::connection();
 if (isset($_SESSION['user_id'])) {
@@ -71,7 +70,6 @@ if (!$isLoggedIn && $_SERVER['REQUEST_METHOD'] === 'POST') {
         $message = t('index.form.errors.pass_mismatch');
         $isError = true;
     } else {
-        // users tablosu kontrolü
         $stmt = $pdo->prepare('SELECT id FROM users WHERE email = ? LIMIT 1');
         $stmt->execute([$email]);
         if ($stmt->fetch()) {
@@ -81,7 +79,6 @@ if (!$isLoggedIn && $_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     if (!$isError) {
-        // registration_requests kontrolü (sadece pending engellensin)
         $stmt = $pdo->prepare("SELECT id FROM registration_requests WHERE email = ? AND status = 'pending' LIMIT 1");
         $stmt->execute([$email]);
         if ($stmt->fetch()) {
@@ -91,7 +88,6 @@ if (!$isLoggedIn && $_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     if (!$isError) {
-        // Önceden onaylanmış kayıt isteği tabloda duruyorsa temizle ki UNIQUE hatası olmasın
         $pdo->prepare('DELETE FROM registration_requests WHERE email = :email AND status = "approved"')
             ->execute(['email' => $email]);
 
@@ -101,7 +97,6 @@ if (!$isLoggedIn && $_SERVER['REQUEST_METHOD'] === 'POST') {
             $ins->execute(['n' => $fullName, 'e' => $email, 'p' => $hash]);
             $message = t('index.form.success.request_sent');
             $isError = false;
-            // Adminlere "yeni kayıt isteği" maili gönder
             $admins = $pdo->prepare('SELECT name, email FROM users WHERE role = "admin"');
             $admins->execute();
             $adminRows = $admins->fetchAll(PDO::FETCH_ASSOC);

@@ -1,5 +1,4 @@
 <?php
-// Sayfada override edilebilir:
 $SEO_TITLE = $SEO_TITLE ?? t('seo.title', 'KFL Robotics');
 $SEO_DESC  = $SEO_DESC  ?? t('seo.desc', 'KFL Robotics VEX robotik takımı.');
 $SEO_PATH  = $SEO_PATH  ?? strtok($_SERVER['REQUEST_URI'] ?? '/', '?');

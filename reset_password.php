@@ -64,7 +64,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
         $tokenHash = hash('sha256', $postToken);
 
-        // Token hala geçerli mi?
         $st = $pdo->prepare("
             SELECT id, user_id, expires_at, used_at
             FROM password_resets
@@ -80,11 +79,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } else {
             $hash = password_hash($newPass, PASSWORD_DEFAULT);
 
-            // users tablosundaki şifre alanın farklıysa burayı değiştir:
             $upd = $pdo->prepare("UPDATE users SET password = :p WHERE id = :uid");
             $upd->execute(['p' => $hash, 'uid' => $row['user_id']]);
 
-            // tokenı kullanıldı işaretle
             $pdo->prepare("UPDATE password_resets SET used_at = NOW() WHERE id = :id")
                 ->execute(['id' => $row['id']]);
 

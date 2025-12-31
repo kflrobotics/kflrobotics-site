@@ -1,8 +1,5 @@
 <?php
-// GERÇEK 404 HEADER (SEO + tarayıcı için)
 http_response_code(404);
-
-// Bootstrap (dil sistemi, session vs.)
 require_once __DIR__ . '/config/bootstrap.php';
 ?>
 <!doctype html>

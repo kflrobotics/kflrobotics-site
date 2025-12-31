@@ -1,8 +1,5 @@
 <?php
 require_once __DIR__ . '/bootstrap.php';
-// config/mail.php
-// PHPMailer ile SMTP ayarları + helper.
-
 if (!class_exists(\PHPMailer\PHPMailer\PHPMailer::class)) {
     $autoload = __DIR__ . '/../vendor/autoload.php';
     if (file_exists($autoload)) {
@@ -49,9 +46,6 @@ function sendMail(string $to, string $subject, string $body): bool
         return false;
     }
 }
-// ===============================
-// KFL ROBOTICS HTML MAIL TEMPLATE
-// ===============================
 
 function buildKflEmailHtml(
     string $title,

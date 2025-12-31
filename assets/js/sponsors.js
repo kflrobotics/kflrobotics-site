@@ -8,11 +8,9 @@
   const originals = Array.from(track.children);
   if (originals.length < 2) return;
 
-  // === 1) 3 SET YAP (orijinal + 2 klon) ===
   originals.forEach(el => track.appendChild(el.cloneNode(true)));
   originals.forEach(el => track.appendChild(el.cloneNode(true)));
 
-  // === 2) GAP HESABI ===
   function getGapPx(){
     const cs = getComputedStyle(track);
     return parseFloat(cs.gap || cs.columnGap || 0) || 0;
@@ -28,7 +26,6 @@
       if (i !== originals.length - 1) setWidth += gap;
     }
 
-    // Başlangıç: ORTA SET
     slider.scrollLeft = setWidth;
   }
 
@@ -36,7 +33,6 @@
   window.addEventListener('resize', recalc);
   setTimeout(recalc, 50);
 
-  // === 3) LOOP FIX (İLERİ + GERİ) ===
   function loopFix(){
     if (slider.scrollLeft < setWidth * 0.5) {
       slider.scrollLeft += setWidth;
@@ -46,7 +42,6 @@
     }
   }
 
-  // === 4) DRAG ===
   let dragging = false;
   let startX = 0;
   let startScroll = 0;
@@ -81,8 +76,7 @@
   window.addEventListener('touchmove', dragMove, {passive:false});
   window.addEventListener('touchend', dragEnd);
 
-  // === 5) AUTO SCROLL (SADECE DRAG'DE DURUR) ===
-  const speed = 0.6; // negatif yaparsan sola akar
+  const speed = 0.6;
 
   function auto(){
     if (!dragging) {

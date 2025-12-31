@@ -5,9 +5,6 @@ require_once __DIR__ . '/config/auth.php';
 $pdo = Database::connection();
 $allowedRoles = ['pd','admin','coding','leader'];
 
-/* =========================
-   AUTH
-   ========================= */
 $userId = $_SESSION['user_id'] ?? null;
 if (!$userId) {
     header('Location: login.php');
@@ -23,9 +20,6 @@ if (!$currentUser || !in_array($currentUser['role'], $allowedRoles, true)) {
     exit(t('logs.auth.forbidden'));
 }
 
-/* =========================
-   HELPERS
-   ========================= */
 function csrf_token(): string {
     if (empty($_SESSION['csrf_token'])) {
         $_SESSION['csrf_token'] = bin2hex(random_bytes(16));
@@ -52,9 +46,6 @@ function formatDateTRFull(string $date): string {
            $dt->format('Y');
 }
 
-/* =========================
-   DATE LOGIC
-   ========================= */
 $monthParam = $_GET['month'] ?? date('Y-m');
 if (!preg_match('/^\d{4}-\d{2}$/', $monthParam)) $monthParam = date('Y-m');
 
@@ -71,9 +62,6 @@ $todayStr = date('Y-m-d');
 $selectedDate = $_GET['date'] ?? $todayStr;
 if (!preg_match('/^\d{4}-\d{2}-\d{2}$/', $selectedDate)) $selectedDate = $todayStr;
 
-/* =========================
-   ADD NOTE
-   ========================= */
 $message = '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'add_note') {
     if (!verify_csrf($_POST['csrf'] ?? '')) {
@@ -91,9 +79,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'add_n
     }
 }
 
-/* =========================
-   DELETE NOTE
-   ========================= */
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'delete_note') {
     if (!verify_csrf($_POST['csrf'] ?? '')) exit(t('logs.form.errors.csrf_short'));
 
@@ -119,9 +104,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'delet
     exit;
 }
 
-/* =========================
-   FETCH DATA
-   ========================= */
 $daysWithNotes = [];
 $q = $pdo->prepare('SELECT DISTINCT log_date FROM daily_logs WHERE log_date BETWEEN ? AND ?');
 $q->execute([$baseDate->format('Y-m-01'), $baseDate->format('Y-m-t')]);
