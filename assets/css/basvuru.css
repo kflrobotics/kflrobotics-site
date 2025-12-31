@@ -1,0 +1,73 @@
+/* Bu sayfaya özel ufak ek stiller (mevcut tema ile uyumlu) */
+body.page-basvuru{
+    background: linear-gradient(135deg, #08111d, #0a1624);
+    display:flex;
+    flex-direction:column;
+    min-height:100vh;
+}
+body.page-basvuru .page{ flex:1; padding-bottom:24px; }
+
+.apply-head{ margin: 6px 0 18px; }
+.apply-head .lead{ margin: 8px 0 0; }
+
+.apply-grid{
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap:16px;
+    margin-top:18px;
+}
+
+.apply-card{
+    display:flex;
+    gap:14px;
+    align-items:flex-start;
+    padding:18px;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    background: rgba(255,255,255,0.02);
+    box-shadow: 0 18px 40px rgba(0,0,0,0.35);
+    transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease, background .18s ease;
+    position:relative;
+    overflow:hidden;
+    cursor:pointer;
+}
+.apply-card:hover{
+    transform: translateY(-2px);
+    border-color: rgba(45,212,191,0.35);
+    box-shadow: 0 22px 60px rgba(0,0,0,0.45);
+    background: rgba(255,255,255,0.03);
+}
+
+.apply-ico{
+    width:48px; height:48px;
+    border-radius:14px;
+    display:grid; place-items:center;
+    background: linear-gradient(135deg, rgba(45,212,191,0.18), rgba(245,158,11,0.10));
+    border:1px solid rgba(255,255,255,0.08);
+    flex: 0 0 auto;
+    color: #9efce6;
+    box-shadow: 0 14px 40px rgba(45,212,191,0.10);
+}
+.apply-ico svg{ width:24px; height:24px; }
+
+.apply-body h3{ margin:0 0 6px; font-size:18px; }
+.apply-body p{ margin:0; color: var(--muted); line-height:1.55; }
+
+.apply-arrow{
+    margin-left:auto;
+    color: var(--muted);
+    opacity:.9;
+    font-weight:700;
+    padding: 6px 10px;
+    border-radius:999px;
+    border:1px solid var(--border);
+    background: rgba(255,255,255,0.02);
+    align-self:center;
+    flex: 0 0 auto;
+}
+
+@media (max-width: 520px){
+    .apply-card{ padding:16px; }
+    .apply-ico{ width:44px; height:44px; border-radius:14px; }
+    .apply-body h3{ font-size:17px; }
+}

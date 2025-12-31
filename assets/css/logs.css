@@ -1,0 +1,150 @@
+/* =========================
+   LOGS / DAILY CALENDAR
+   ========================= */
+
+/* Wrapper */
+.logs-wrap{
+  display:grid;
+  grid-template-columns:1.1fr 1fr;
+  gap:20px;
+  margin-top:18px;
+}
+
+@media (max-width:960px){
+  .logs-wrap{
+    grid-template-columns:1fr;
+  }
+}
+
+/* Calendar card */
+.calendar{
+  padding:16px;
+}
+
+/* Header */
+.calendar-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  margin-bottom:12px;
+}
+
+.cal-nav{
+  color:var(--accent);
+  font-weight:700;
+  font-size:13px;
+}
+
+.cal-month{
+  font-weight:700;
+  color:var(--text);
+}
+
+/* Weekdays + days grid */
+.calendar-weekdays,
+.calendar-days{
+  display:grid;
+  grid-template-columns:repeat(7,1fr);
+  gap:6px;
+}
+
+.weekday{
+  text-align:center;
+  color:var(--muted);
+  font-size:12px;
+}
+
+/* Day cell */
+.calendar-days > a.day{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:100%;
+  height:54px;
+
+  position:relative;
+  border:1px solid var(--border);
+  border-radius:12px;
+  background:rgba(255,255,255,0.03);
+
+  color:var(--text);
+  font-weight:700;
+  text-decoration:none;
+
+  transition:border-color .15s ease, transform .15s ease;
+}
+
+.calendar-days > a.day:hover{
+  border-color:rgba(45,212,191,0.45);
+  transform:translateY(-2px);
+}
+
+/* States */
+.calendar-days > a.day.today{
+  border-color:rgba(45,212,191,0.6);
+}
+
+.calendar-days > a.day.selected{
+  box-shadow:0 0 0 2px rgba(45,212,191,0.35);
+}
+
+.calendar-days > a.day.has-note::after{
+  content:"";
+  position:absolute;
+  bottom:6px;
+  right:6px;
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background:var(--accent);
+}
+
+/* Empty cells */
+.calendar-days .day.empty{
+  background:transparent;
+  border:none;
+  pointer-events:none;
+}
+
+/* Right panel */
+.day-panel{
+  padding:18px;
+  display:grid;
+  gap:14px;
+}
+
+/* Log form */
+.log-form textarea{
+  width:100%;
+  resize:vertical;
+  padding:12px;
+  border-radius:12px;
+  border:1px solid var(--border);
+  background:rgba(255,255,255,0.03);
+  color:var(--text);
+}
+
+/* Log list */
+.log-list{
+  display:grid;
+  gap:10px;
+}
+
+.log-item{
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:12px;
+  background:rgba(255,255,255,0.02);
+}
+
+.log-meta{
+  color:var(--muted);
+  font-size:12px;
+  margin-bottom:6px;
+}
+
+.log-text{
+  color:var(--text);
+  line-height:1.5;
+}

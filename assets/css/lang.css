@@ -1,0 +1,157 @@
+/* =========================
+   Language Dropdown (FINAL)
+   ========================= */
+
+/* Wrapper */
+.lang-dd{
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+}
+
+/* Button (selected language) */
+.lang-btn{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:8px 10px;
+  border-radius:12px;
+  border:1px solid rgba(255, 255, 255, 0.233);
+  background: rgba(8, 14, 28, 0.55);
+  color:#fff;
+  cursor:pointer;
+  user-select:none;
+  outline:none;
+  -webkit-tap-highlight-color: transparent;
+  backdrop-filter: blur(6px);
+}
+
+.lang-btn:hover{
+  background: rgba(8, 14, 28, 0.75);
+}
+
+.lang-btn:active{
+  transform: translateY(1px);
+}
+
+.lang-btn:focus-visible{
+  box-shadow: 0 0 0 3px rgba(0, 255, 200, 0.18);
+}
+
+/* Icon + label */
+.lang-icon{
+  width:22px !important;
+  height:16px !important;
+  display:block !important;
+  border-radius:3px;
+  object-fit: cover;
+}
+
+.lang-code{
+  font-size:12px;
+  font-weight:600;
+  letter-spacing:.4px;
+  opacity:.92;
+}
+
+.lang-caret{
+  font-size:12px;
+  opacity:.75;
+  transform: translateY(-1px);
+}
+
+/* Dropdown menu */
+.lang-menu{
+  position:absolute;
+  top: calc(100% + 10px);
+  right: 0;
+
+  min-width: 170px;
+  padding:8px;
+  border-radius:14px;
+  border:1px solid rgba(255,255,255,0.12);
+  background: rgba(8, 14, 28, 0.92);
+  box-shadow: 0 18px 40px rgba(0,0,0,0.45);
+
+  opacity: 0;
+  transform: translateY(-10px);
+  pointer-events: none;
+  transition: opacity .18s ease, transform .18s ease;
+  z-index: 9999;
+
+  backdrop-filter: blur(10px);
+}
+
+/* Open state */
+.lang-dd.open .lang-menu{
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* Menu item */
+.lang-item{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:10px 10px;
+  border-radius:12px;
+  text-decoration:none;
+  color:#fff;
+  font-size:13px;
+  line-height:1;
+  transition: background .15s ease, transform .15s ease, opacity .15s ease;
+}
+
+.lang-item img{
+  width:22px !important;
+  height:16px !important;
+  border-radius:3px;
+  object-fit: cover;
+  display:block !important;
+}
+
+.lang-item:hover{
+  background: rgba(255,255,255,0.08);
+  transform: translateX(1px);
+}
+
+.lang-item:active{
+  transform: translateX(1px) translateY(1px);
+}
+
+/* Optional: aktif dili menüde pasif göster (istersen HTML'e is-active ekle) */
+.lang-item.is-active{
+  opacity: .55;
+  pointer-events: none;
+}
+
+/* Prevent huge images if something goes wrong elsewhere */
+.lang-dd img{
+  max-width: 100%;
+  height: auto;
+}
+
+/* Mobile tweaks */
+@media (max-width: 960px){
+  .lang-btn{
+    padding:7px 9px;
+    border-radius: 12px;
+  }
+  .lang-code{
+    display:none; /* Mobilde sadece bayrak + ok kalsın */
+  }
+  .lang-menu{
+    right: 0;
+    min-width: 160px;
+  }
+}
+
+/* Optional: if navbar is cramped */
+@media (max-width: 520px){
+  .lang-menu{
+    min-width: 150px;
+  }
+}
