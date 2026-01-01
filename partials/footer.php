@@ -33,6 +33,8 @@ $currentYear = (int)date('Y');
     <div class="footer-col">
       <div class="footer-title"><?= e(t('footer.down.contact')) ?></div>
       <div class="footer-contact">info@kflrobotics.com</div>
+      <div class="footer-contact">instagram.com/kflrobotics</div>
+      <div class="footer-contact">github.com/kflrobotics</div>
       <div class="footer-copyright">© <?= $currentYear ?> KFL Robotics</div>
       <div class="footer-contact">made with ❤️ by ege</div>
     </div>
